@@ -1,13 +1,14 @@
-package com.hfad.fragments;
+ package com.hfad.fragments;
 
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class StopwatchFragment extends android.support.v4.app.Fragment {
+public class StopwatchFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
 
     private int seconds = 0;
     private Boolean running = false;
@@ -31,7 +32,34 @@ public class StopwatchFragment extends android.support.v4.app.Fragment {
 
         runtimer(layout);
 
+        Button startButton = layout.findViewById(R.id.start_button);
+        startButton.setOnClickListener(this);
+
+        Button stopButton = layout.findViewById(R.id.stop_button);
+        stopButton.setOnClickListener(this);
+
+        Button resetButton = layout.findViewById(R.id.reset_button);
+        resetButton.setOnClickListener(this);
+
         return layout;
+
+    }
+
+    public void onClick (View view)
+    {
+        switch (view.getId()) {
+            case R.id.start_button:
+                onClickStart(view);
+                break;
+
+            case R.id.stop_button:
+                onClickStop(view);
+                break;
+
+            case R.id.reset_button:
+                onClickReset(view);
+                break;
+        }
 
     }
 
